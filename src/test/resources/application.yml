@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8080
 spring:
   datasource:
     platform: postgres
@@ -7,5 +7,3 @@ spring:
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
-  cache:
-    cache-names=cache1,cache2:

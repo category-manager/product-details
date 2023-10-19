@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.github.sudarshan'
 version = '0.0.1-SNAPSHOT'
-def categoryManagerVersion = '0.0.1-BETA'
+def categoryManagerVersion = '0.0.3-BETA'
 
 java {
 	sourceCompatibility = '11'
@@ -39,9 +39,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+//    implementation group: 'com.fasterxml.jackson', name: 'annotations', version: '2.11.3'
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.11.3'
 }
 
 tasks.named('test') {

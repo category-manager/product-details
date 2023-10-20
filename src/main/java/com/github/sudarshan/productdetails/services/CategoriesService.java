@@ -176,7 +176,6 @@ algo:
     }
 
     public boolean importCategoriesFromDb() {
-        // todo: import 0.0.4-beta of category manager to flush data before importing from db.
         this.importOperation.importData();
         return true;
     }

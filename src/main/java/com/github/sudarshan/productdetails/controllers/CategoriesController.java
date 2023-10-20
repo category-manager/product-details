@@ -47,9 +47,9 @@ public class CategoriesController {
     }
     @RequestMapping(value = "/hierarchy/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getCategoryHierarchyByIdInHierarchicalForm(@PathVariable("id") String id,
-                                                    @RequestParam(value = "ancestors", required = false) boolean ancestors,
-                                                    @RequestParam(value = "descendants", required = false) boolean descendants,
-                                                    @RequestParam(value = "height", required = false) int height) {
+                                                    @RequestParam(value = "ancestors", required = false, defaultValue = "false") boolean ancestors,
+                                                    @RequestParam(value = "descendants", required = false, defaultValue = "false") boolean descendants,
+                                                    @RequestParam(value = "height", required = false, defaultValue = "2") int height) {
         // TODO: use height to generate descendant-paths for
         //  the `id` of depth `height`.
 

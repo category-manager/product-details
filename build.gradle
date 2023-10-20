@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.github.sudarshan'
 version = '0.0.1-SNAPSHOT'
-def categoryManagerVersion = '0.0.3-BETA'
+def categoryManagerVersion = '0.1.0-BETA'
 
 java {
 	sourceCompatibility = '11'

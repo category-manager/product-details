@@ -114,7 +114,12 @@ public class CategoriesService {
             } else if(node.getParents().contains(CoreConstants.UNLINKED_NODE_ID)) {
                 response.getUnlinkedCategories().add(node.get_id());
             } else {
-                response.getLinkedCategories().add(node.get_id());
+                if(node.get_id().equalsIgnoreCase(CoreConstants.HEAD_NODE_ID))
+                    response.getLinkedCategories().add(node.get_id());
+                else if(node.get_id().equalsIgnoreCase(CoreConstants.UNLINKED_NODE_ID))
+                    response.getUnlinkedCategories().add(node.get_id());
+                else
+                    response.getLinkedCategories().add(node.get_id());
             }
         }
     }

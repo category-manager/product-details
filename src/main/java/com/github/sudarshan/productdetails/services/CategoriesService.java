@@ -124,12 +124,13 @@ public class CategoriesService {
         }
     }
 
-    public CategoryResponse getCategoryHierarchyById(String id) {
+    public CategoryResponse getCategoryHierarchyById(String id, boolean descendants) {
         var paths = (CategoriesPaths)this.restExport.exportPathById(id);
         var ancestorPaths = paths.getCategoriesPaths().get(0).getAncestorPaths();
+        var descendantPaths = paths.getCategoriesPaths().get(0).getDescendantPaths();
         var nodeMap = paths.getCategoriesPaths().get(0).getNodeMap();
         log.info("nodeMap = {}", nodeMap);
-        return this.constructCategoryResponse(ancestorPaths, nodeMap);
+        return this.constructCategoryResponse((descendants)? descendantPaths: ancestorPaths, nodeMap);
     }
 /*
 algo:

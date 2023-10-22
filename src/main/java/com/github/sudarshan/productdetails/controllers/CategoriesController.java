@@ -54,7 +54,7 @@ public class CategoriesController {
         // TODO: use height to generate descendant-paths for
         //  the `id` of depth `height`.
 
-        var categoryInHierarchicalForm = this.categoriesService.getCategoryHierarchyById(id);
+        var categoryInHierarchicalForm = this.categoriesService.getCategoryHierarchyById(id, descendants);
         return new ResponseEntity<>(categoryInHierarchicalForm, HttpStatus.OK);
     }
 

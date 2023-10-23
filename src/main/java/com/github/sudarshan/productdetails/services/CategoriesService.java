@@ -129,7 +129,7 @@ public class CategoriesService {
         var ancestorPaths = paths.getCategoriesPaths().get(0).getAncestorPaths();
         var descendantPaths = paths.getCategoriesPaths().get(0).getDescendantPaths();
         var nodeMap = paths.getCategoriesPaths().get(0).getNodeMap();
-        log.info("nodeMap = {}", nodeMap);
+        log.info("nodeMap size = {}", nodeMap.size());
         return this.constructCategoryResponse((descendants)? descendantPaths: ancestorPaths, nodeMap);
     }
 /*
@@ -173,11 +173,13 @@ algo:
                 fifo.poll();
             }
         }
+        /*
         try {
             log.info("{}", mapper.writeValueAsString(response));
         } catch (JsonProcessingException e) {
             log.error("Error logging categoryResponse object. {} ", response);
         }
+        */
         return response;
     }
 

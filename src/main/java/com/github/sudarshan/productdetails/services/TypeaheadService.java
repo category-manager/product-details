@@ -3,6 +3,7 @@ package com.github.sudarshan.productdetails.services;
 import com.github.sudarshan.productdetails.models.TypeaheadDatum;
 import com.github.sudarshan.productdetails.models.TypeaheadNode;
 import com.github.sudarshan.productdetails.repositories.TypeaheadRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import static com.github.sudarshan.productdetails.configs.AppConstants.MAX_TYPEA
 import static com.github.sudarshan.productdetails.configs.AppConstants.MIN_TYPEAHEAD_LENGTH;
 
 @Service
+@Log4j2
 public class TypeaheadService {
     @Autowired
     private TypeaheadRepository typeaheadRepository;
@@ -25,7 +27,20 @@ public class TypeaheadService {
     @PostConstruct
     public void setup() {
         typeaheadData = typeaheadRepository.getTypeaheadData();
-        constructTypeaheadDs();
+
+        // SPAWNING NEW THREAD SPEEDS UP APPLICATION STARTUP TIME
+        var constructTypeaheadDataTask = new Runnable() {
+            @Override
+            public void run() {
+                long startTime = System.currentTimeMillis();
+                constructTypeaheadDs();
+                long endTime = System.currentTimeMillis();
+                log.info("Typeahead data construction complete in {} ms", endTime-startTime);
+            }
+        };
+        Thread thread = new Thread(constructTypeaheadDataTask);
+        thread.start();
+        log.info("Typeahead data construction started.");
     }
 
     private void constructTypeaheadDs() {
@@ -67,7 +82,9 @@ public class TypeaheadService {
             String name = datum.getName();
             if(Objects.isNull(name) || name.isBlank())
                 continue;
-            name = name.toLowerCase();
+
+            name = name.concat(" - ").concat(datum.getId()).toLowerCase();
+//            name = name.toLowerCase();
             List<String> list = new ArrayList<>(2);
             list.add(name);
             ordinalToNamesMap.put(ordinalIdx, list);

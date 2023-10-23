@@ -2,6 +2,7 @@ package com.github.sudarshan.productdetails.controllers;
 
 import com.github.sudarshan.productdetails.models.requests.CategoryRequest;
 import com.github.sudarshan.productdetails.services.CategoriesService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(value = {"*"})
 @RequestMapping(value = "/api/categories")
+@Log4j2
 public class CategoriesController {
     @Autowired
     private CategoriesService categoriesService;
@@ -37,7 +39,10 @@ public class CategoriesController {
     }
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllCategories(@RequestParam(value = "grouped", required = false, defaultValue = "true") boolean isGrouped) {
+        long startTime = System.currentTimeMillis();
         var categoriesResponse = this.categoriesService.getAllCategories(isGrouped);
+        long endTime = System.currentTimeMillis();
+        log.info("Fetch time in Mills = {}", (endTime - startTime));
         return new ResponseEntity<>(categoriesResponse, HttpStatus.OK);
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

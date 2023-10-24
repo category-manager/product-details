@@ -3,9 +3,7 @@ server:
 spring:
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
-  cache:
-    cache-names=cache1,cache2:

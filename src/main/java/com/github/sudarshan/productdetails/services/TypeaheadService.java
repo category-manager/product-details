@@ -83,7 +83,7 @@ public class TypeaheadService {
             if(Objects.isNull(name) || name.isBlank())
                 continue;
 
-            name = name.concat(" - ").concat(datum.getId()).toLowerCase();
+            name = name.toLowerCase().concat(" - ").concat(datum.getId());
 //            name = name.toLowerCase();
             List<String> list = new ArrayList<>(2);
             list.add(name);

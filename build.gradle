@@ -9,7 +9,7 @@ mainClassName='com.github.sudarshan.productdetails.ProductDetailsApplication'
 
 group = 'com.github.sudarshan'
 version = '0.0.1-SNAPSHOT'
-def categoryManagerVersion = '0.1.0-BETA'
+def categoryManagerVersion = '0.1.2-BETA'
 
 java {
 	sourceCompatibility = '11'

@@ -2,7 +2,7 @@
 <hr>
 
 ## INTRO
-This application serves two purposes, one it demonstrates some of the features of <a href="" target="_blank" > Category Manager library</a>.
+This application serves two purposes, one it demonstrates some of the features of <a href="https://github.com/category-manager/category-manager" target="_blank" > Category Manager library</a>.
 Two, it's also a tool that lets you do some basic data manipulation and searching of the hierarchical information stored in your application.
 
 ## Technology used
